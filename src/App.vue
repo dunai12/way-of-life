@@ -14,6 +14,13 @@ export default {
 };
 </script>
 
-<style>
-
+<style lang="scss" scoped>
+    // @import "./main.scss";
+    .main-container{
+        background-color: #fff;
+        max-width: 768px;
+        margin: 0 auto;
+        height: 100%;
+        display: flex;
+    }
 </style>

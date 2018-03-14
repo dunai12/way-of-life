@@ -52,9 +52,23 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     .nav-menu{
+        width: 100%;
+        display: flex;
         padding: 0;
         margin: 0;
+        list-style: none;
+        border-top: 1px solid #ccc;
+        align-self: flex-end;
+
+        &__item{
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            padding: 10px 0 5px;
+        }
     }
 </style>
