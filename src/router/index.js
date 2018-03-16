@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
+// import Journal from '../components/'
+
 Vue.use(Router);
 
 export default new Router({
@@ -8,8 +10,13 @@ export default new Router({
     routes: [
         {
             path: '/',
-            name: 'index'
-            // component: Journal
+            name: 'index',
+            redirect: '/journal'
         }
+        // {
+        //     path: '/journal',
+        //     name: 'journal',
+        //     component: Journal
+        // }
     ]
 });

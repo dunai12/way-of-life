@@ -52,6 +52,16 @@ module.exports = {
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
       },
       {
+        loader: 'sass-loader',
+        options: {
+          indentedSyntax: true,
+          sourceMap: true,
+          outputStyle: 'compressed',
+          includePaths: ['../src/sass'],//https://stackoverflow.com/questions/38928380/vue-js-always-load-a-settings-scss-file-in-every-vue-style-section/46015906#46015906
+          data: '@import variables.scss'//https://vue-loader.vuejs.org/en/configurations/pre-processors.html
+        }
+      },
+      {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
         options: {
