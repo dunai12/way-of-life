@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
-// import Journal from '../components/'
+import Journal from '../components/journal';
 
 Vue.use(Router);
 
@@ -12,11 +12,11 @@ export default new Router({
             path: '/',
             name: 'index',
             redirect: '/journal'
+        },
+        {
+            path: '/journal',
+            name: 'journal',
+            component: Journal
         }
-        // {
-        //     path: '/journal',
-        //     name: 'journal',
-        //     component: Journal
-        // }
     ]
 });

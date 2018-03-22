@@ -36,6 +36,7 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      'scss' : resolve('/src/scss')
     }
   },
   module: {
@@ -43,23 +44,45 @@ module.exports = {
       ...(config.dev.useEslint ? [createLintingRule()] : []),
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: vueLoaderConfig
+        use: [
+          {
+            loader: 'vue-loader',
+            options: {
+              loaders: {
+                scss: 'vue-style-loader!css-loader!sass-loader', // <style lang="scss">
+                sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax' // <style lang="sass">
+              }
+            }
+          },
+          {
+            loader: 'sass-resources-loader',
+            options: {
+              resources: path.resolve(__dirname, '../src/scss/vars.scss')
+            }
+          }
+        ]
+        
       },
+      // {
+      //   use: [
+      //     'style-loader',
+      //     'css-loader',
+      //     'postcss-loader',
+      //     'sass-loader',
+      //     'vue-loader',
+      //     {
+      //       loader: 'sass-resources-loader',
+      //       options: {
+      //         // Provide path to the file with resources
+      //         resources: path.resolve(__dirname, '../src/scss/vars.scss')
+      //       },
+      //     },
+      //   ],
+      // },
       {
         test: /\.js$/,
         loader: 'babel-loader',
         include: [resolve('src'), resolve('test'), resolve('node_modules/webpack-dev-server/client')]
-      },
-      {
-        loader: 'sass-loader',
-        options: {
-          indentedSyntax: true,
-          sourceMap: true,
-          outputStyle: 'compressed',
-          includePaths: ['../src/sass'],//https://stackoverflow.com/questions/38928380/vue-js-always-load-a-settings-scss-file-in-every-vue-style-section/46015906#46015906
-          data: '@import variables.scss'//https://vue-loader.vuejs.org/en/configurations/pre-processors.html
-        }
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
