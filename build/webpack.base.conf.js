@@ -49,8 +49,24 @@ module.exports = {
             loader: 'vue-loader',
             options: {
               loaders: {
-                scss: 'vue-style-loader!css-loader!sass-loader', // <style lang="scss">
-                sass: 'vue-style-loader!css-loader!sass-loader?indentedSyntax' // <style lang="sass">
+                scss: [
+                  'vue-style-loader!css-loader!sass-loader',
+                  {
+                    loader: 'sass-resources-loader',
+                    options: {
+                      resources: path.resolve(__dirname, '../src/scss/*.scss'),
+                    },
+                  },
+                ],
+                sass: [
+                  'vue-style-loader!css-loader!sass-loader?indentedSyntax',
+                  {
+                    loader: 'sass-resources-loader',
+                    options: {
+                      resources: path.resolve(__dirname, '../src/scss/vars.scss'),
+                    },
+                  }
+                ]
               }
             }
           },
@@ -63,22 +79,6 @@ module.exports = {
         ]
         
       },
-      // {
-      //   use: [
-      //     'style-loader',
-      //     'css-loader',
-      //     'postcss-loader',
-      //     'sass-loader',
-      //     'vue-loader',
-      //     {
-      //       loader: 'sass-resources-loader',
-      //       options: {
-      //         // Provide path to the file with resources
-      //         resources: path.resolve(__dirname, '../src/scss/vars.scss')
-      //       },
-      //     },
-      //   ],
-      // },
       {
         test: /\.js$/,
         loader: 'babel-loader',

@@ -53,8 +53,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    @import "~scss/vars";
-
     .nav-menu{
         width: 100%;
         display: flex;
@@ -73,6 +71,9 @@ export default {
             cursor: pointer;
             padding: 10px 0 5px;
             font-size: 11px;
+            &_active{
+                color: $blue;
+            }
         }
         &__icon{
             font-size: 16px;
